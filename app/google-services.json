@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "652483716111",
+    "project_id": "redload-c8603",
+    "storage_bucket": "redload-c8603.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:652483716111:android:d5c6d517fc414b66ecaf7a",
+        "android_client_info": {
+          "package_name": "com.redload.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqrsnGRWsOw8FA2ZqvcpcvMslQRhVhXSI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
