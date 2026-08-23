@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/grey_100">
+
+    <!-- ─── Header ─── -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/header_gradient"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RedLoad"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/cairo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="منصة تحميل الفيديوهات"
+            android:textColor="@color/white"
+            android:alpha="0.85"
+            android:textSize="12sp"
+            android:fontFamily="@font/cairo"
+            android:layout_marginTop="2dp" />
+    </LinearLayout>
+
+    <!-- ─── Content ─── -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="24dp">
+
+            <!-- Update Icon -->
+            <ImageView
+                android:id="@+id/updateIcon"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_update"
+                android:contentDescription="تحديث مطلوب"
+                android:layout_marginBottom="20dp" />
+
+            <!-- Card -->
+            <LinearLayout
+                android:id="@+id/updateCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_bg"
+                android:elevation="3dp"
+                android:padding="24dp">
+
+                <!-- Card Title -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="تحديث مطلوب!"
+                    android:textColor="@color/grey_900"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/cairo"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp" />
+
+                <!-- Description -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="هذا الإصدار من التطبيق قديم ولم يعد يعمل.\nيُرجى تحديثه إلى أحدث إصدار للاستمرار في استخدام RedLoad."
+                    android:textColor="@color/grey_600"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/cairo"
+                    android:gravity="center"
+                    android:lineSpacingMultiplier="1.6"
+                    android:layout_marginBottom="20dp" />
+
+                <!-- Version Comparison Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:background="@color/grey_50"
+                    android:padding="12dp"
+                    android:layout_marginBottom="20dp">
+
+                    <!-- Current -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="الإصدار الحالي"
+                            android:textColor="@color/grey_400"
+                            android:textSize="11sp"
+                            android:fontFamily="@font/cairo"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/tvCurrentVersion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1.0.0"
+                            android:textColor="@color/grey_400"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="4dp" />
+                    </LinearLayout>
+
+                    <!-- Arrow -->
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_open_browser"
+                        android:alpha="0.5"
+                        android:contentDescription="arrow" />
+
+                    <!-- Latest -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="أحدث إصدار"
+                            android:textColor="@color/grey_400"
+                            android:textSize="11sp"
+                            android:fontFamily="@font/cairo"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/tvLatestVersion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="—"
+                            android:textColor="@color/red"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="4dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Download Button -->
+                <Button
+                    android:id="@+id/downloadBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="تنزيل آخر إصدار"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/cairo"
+                    android:textAllCaps="false"
+                    android:background="@drawable/fetch_btn_bg"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:drawableStart="@drawable/ic_download"
+                    android:drawablePadding="8dp" />
+
+            </LinearLayout>
+
+            <!-- Footer note -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="سيُفتح المتصفح الخارجي لإتمام التحديث"
+                android:textColor="@color/grey_400"
+                android:textSize="12sp"
+                android:fontFamily="@font/cairo"
+                android:gravity="center"
+                android:layout_marginTop="16dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
