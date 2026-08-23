@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp"
+    android:background="@color/grey_100">
+
+    <!-- Icon -->
+    <ImageView
+        android:id="@+id/noInternetIcon"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/ic_no_internet"
+        android:contentDescription="لا يوجد اتصال"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/noInternetTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="لا يوجد اتصال بالإنترنت"
+        android:textColor="@color/red_dark"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/cairo"
+        android:gravity="center"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Message -->
+    <TextView
+        android:id="@+id/noInternetMsg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="يرجى التحقق من اتصال جهازك بشبكة الواي فاي أو بيانات الهاتف، ثم أعد المحاولة لتشغيل RedLoad."
+        android:textColor="@color/grey_600"
+        android:textSize="14sp"
+        android:fontFamily="@font/cairo"
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.6"
+        android:layout_marginBottom="32dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp" />
+
+    <!-- Retry Button -->
+    <Button
+        android:id="@+id/retryBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="إعادة المحاولة"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/cairo"
+        android:textAllCaps="false"
+        android:background="@drawable/fetch_btn_bg"
+        android:paddingStart="36dp"
+        android:paddingEnd="36dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp" />
+
+</LinearLayout>
