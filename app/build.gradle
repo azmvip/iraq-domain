@@ -1,0 +1,110 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+// Load local.properties for secrets
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+android {
+    namespace "com.redload.app"
+    compileSdkVersion 34
+    defaultConfig {
+        applicationId "com.redload.app"
+        minSdkVersion 23
+        targetSdkVersion 34
+        versionCode 1
+        versionName "1.0.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // API key stored safely in local.properties — never commit local.properties
+        buildConfigField "String", "RAPIDAPI_KEY",
+            "\"${localProperties.getProperty('RAPIDAPI_KEY', '')}\""
+        buildConfigField "String", "RAPIDAPI_HOST",
+            "\"tiktok-scraper7.p.rapidapi.com\""
+        buildConfigField "String", "APP_VERSION",
+            "\"${defaultConfig.versionName}\""
+        buildConfigField "String", "VERSION_CHECK_URL",
+            "\"https://red-app.pages.dev/app/redload/version.json\""
+        buildConfigField "String", "UPDATE_URL",
+            "\"https://red-app.pages.dev/app/redload/\""
+    }
+
+    // AGP 7+/8+ disables BuildConfig generation by default — must opt in
+    // explicitly, otherwise every BuildConfig.XXX reference fails to compile.
+    buildFeatures {
+        buildConfig true
+    }
+
+    signingConfigs {
+        release {
+            def ksPath = localProperties.getProperty('RELEASE_STORE_FILE', '')
+            if (ksPath) {
+                storeFile file(ksPath)
+                storePassword localProperties.getProperty('RELEASE_STORE_PASSWORD', '')
+                keyAlias localProperties.getProperty('RELEASE_KEY_ALIAS', '')
+                keyPassword localProperties.getProperty('RELEASE_KEY_PASSWORD', '')
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    // Firebase Analytics — version chosen for compatibility with
+    // compileSdk 29 / AGP 3.5.3 (no BoM needed at this version)
+    implementation 'com.google.firebase:firebase-analytics:17.5.0'
+
+    // Firebase Remote Config — used for forced-update version checks
+    implementation 'com.google.firebase:firebase-config:19.2.0'
+
+    // jsoup — pure Java HTML parser, no Kotlin/coroutines version requirements,
+    // safe to add without touching the toolchain. Used by our own extractor
+    // library (inspired by Skraper's approach) for og:video/meta parsing.
+    implementation 'org.jsoup:jsoup:1.15.3'
+
+    // ─── Skraper (full library) ───────────────────────────────────────
+    // Requires Kotlin 1.9.x + Ktor client — this is the reason the whole
+    // toolchain above (Kotlin/AGP/Gradle) had to be upgraded.
+    implementation 'ru.sokomishalov.skraper:skrapers:0.13.0'
+    // Ktor needs an explicit HTTP engine — OkHttp is the standard Android choice.
+    implementation 'io.ktor:ktor-client-okhttp:2.3.4'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
+}
+
+// Must be applied last, after the android application plugin above
+apply plugin: 'com.google.gms.google-services'
